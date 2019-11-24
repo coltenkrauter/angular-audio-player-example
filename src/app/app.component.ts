@@ -9,19 +9,19 @@ import { PlyrComponent } from 'ngx-plyr';
 export class AppComponent {
   title = 'audio-player';
    // get the component instance to have access to plyr instance
-  @ViewChild(PlyrComponent, {static: false}) Plyr: PlyrComponent;
+  @ViewChild(PlyrComponent, {static: false}) plyr: PlyrComponent;
 
   // or get it from plyrInit event
-  player: Plyr;
+  player;
 
-  videoSources: Plyr.Source[] = [
+  videoSources = [
     {
       src: 'bTqVqk7FSmY',
       provider: 'youtube',
     },
   ];
 
-  played(event: Plyr.PlyrEvent) {
+  played(event) {
     console.log('played', event);
   }
 
