@@ -2,4 +2,7 @@
 
 <button (click)="play()">Play</button>
 
+<div mat-card-image plyr plyrTitle="Audio" plyrType="audio" [plyrPlaysInline]="true" [plyrCrossOrigin]="true"
+  [plyrSources]="audioSources"></div>
+
 <router-outlet></router-outlet>
