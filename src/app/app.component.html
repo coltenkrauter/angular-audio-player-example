@@ -1,8 +1,41 @@
-<div plyr style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
+<!-- <div plyr style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></div>
+-->
 
-<button (click)="play()">Play</button>
+<div class="player-track-title">
+  {{ track.name }}
+</div>
+<div class="player-track-artist">
+  {{ track.artist }}
+</div>
+<plyr mat-card-image 
+  plyrTitle="Audio" 
+  plyrType="audio" 
+  [plyrPlaysInline]="true" 
+  [plyrCrossOrigin]="true" 
+  [plyrSources]="[track]"
+  [plyrOptions]="options"
+  (plyrInit)="player = $event"
+  (plyrPlaying)="playing($event, track)"
+  (plyrEnded)="ended($event, track)"
+  (plyrReady)="ready($event, track)">
+</plyr>
 
-<div mat-card-image plyr plyrTitle="Audio" plyrType="audio" [plyrPlaysInline]="true" [plyrCrossOrigin]="true"
-  [plyrSources]="audioSources"></div>
+<div 
+  *ngFor="let _track of tracks; let i = index;" 
+  class="player-track"
+  [ngClass]="{'current-track': i == track.trackId}"
+  (click)="play(i)">
+  <div class="player-track-number">
+    {{ i + 1  | number:'2.0' }}.
+  </div>
+  <div class="player-track-title">
+    {{ _track.title }}
+  </div>
+  <div class="player-track-spacer">
+  </div>
+  <div class="player-track-duration">
+    {{ _track.duration }}
+  </div>
+</div>
 
 <router-outlet></router-outlet>
